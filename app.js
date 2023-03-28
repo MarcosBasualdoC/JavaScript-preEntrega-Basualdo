@@ -15,7 +15,12 @@ setTimeout(function () {
 
     alert("Hola! Bienvenido a la VERDULERÍA ONLINE!");
 
-    nombre = prompt("Antes que nada. ¿Como se llama usted?");
+    do {
+        nombre = prompt("Antes que nada. ¿Como se llama usted?");
+        if (nombre == "") {
+            alert("No deje espacios en blanco, Gracias.");
+        }
+    } while (nombre == "");
 
     alert("¿Como le va " + nombre + "?");
 
@@ -26,29 +31,34 @@ setTimeout(function () {
  //SELECCION DE PRODUCTOS Y PRECIOS
 
     do {
-        producto = prompt("Ingresá un producto de VERDULERIA para agregar al carrito:");
 
+        do {
+            producto = prompt("Ingresá un producto de VERDULERIA para agregar al carrito:");
+            if (producto == "") {
+                alert("No deje espacios en blanco, Gracias.");
+            }
+        } while (producto == "");
 
         do {
             precio = parseFloat(prompt("Ingresá el precio de " + producto + ":"));
-            if (precio <= 0) {
+            if (isNaN(precio) || precio <= 0) {
                 alert("El precio ingresado es inválido. Ingresa un precio mayor que cero.");
             }
-        } while (precio <= 0);
+        } while (isNaN(precio) || precio <= 0);
 
 
         total += precio;
 
 
-        respuesta = prompt("¡Excelente! ¿Queres agregar otro producto al carrito? (s/n)");
+        respuesta = prompt("¡Excelente! ¿Queres agregar otro producto al carrito? (s/n)").toLowerCase();
 
 
     } while (respuesta == "s");
 
 
- //SALIDA DEL RESULTADO
+ //MUESTRA DEL RESULTADO
 
-    mensaje = "Los productos en tu carrito tinen un valor total de:\n$" + total;
+    mensaje = ("Los productos en tu carrito tinen un valor total de:\n$" + total);
 
     alert(mensaje);
 
